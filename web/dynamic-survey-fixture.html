@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Student Interests & Hobbies</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 20px; }
+    label { display:block; margin: 18px 0 8px; font-weight: 700; }
+    select, input, button { font-size: 18px; padding: 12px; width: 100%; box-sizing: border-box; }
+    #hobby-question { display:none; }
+  </style>
+</head>
+<body>
+  <h1>Student Interests & Hobbies</h1>
+
+  <label for="q3">Do you have a hobby?</label>
+  <select id="q3" data-testid="q3">
+    <option value="">Choose</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+
+  <div id="hobby-question" data-testid="q4-wrapper">
+    <label for="q4">What is your hobby? (If Yes)</label>
+    <input id="q4" data-testid="q4" type="text" />
+  </div>
+
+  <script>
+    const q3 = document.getElementById('q3');
+    const wrapper = document.getElementById('hobby-question');
+    q3.addEventListener('change', () => {
+      wrapper.style.display = q3.value === 'Yes' ? 'block' : 'none';
+    });
+  </script>
+</body>
+</html>

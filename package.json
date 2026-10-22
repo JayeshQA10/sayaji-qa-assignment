@@ -1,0 +1,15 @@
+{
+  "name": "sayaji-qa-assignment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QA take-home assignment automation for an offline-first survey platform",
+  "scripts": {
+    "test": "node --test api/sync-api.test.js",
+    "test:api": "node --test api/sync-api.test.js",
+    "test:web": "playwright test web/skip-logic.spec.js",
+    "test:all": "npm test && npm run test:web"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

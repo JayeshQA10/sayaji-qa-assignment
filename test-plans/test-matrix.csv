@@ -1,0 +1,58 @@
+ID,Area,Scenario,Priority,Expected Result,Automation
+API-001,Sync,First sync from device A localId School_1,P0,201 and one record,Automated
+API-002,Sync,First sync from device B localId School_1,P0,201 and separate record,Automated
+API-003,Sync,Retry same device/localId,P0,Same server ID and no duplicate,Automated
+API-004,Sync,Same device/localId with changed payload,P0,409/no silent overwrite,Automated
+API-005,Sync,20 concurrent identical requests,P0,One record only,Automated
+API-006,Sync,Missing deviceId,P1,400,Automated
+API-007,Sync,Invalid JSON,P1,400,Automated
+API-008,Sync,50k reconnect load test,P0,Within SLO and controlled queue,Load test
+NET-001,Upload,Network loss at 99% photo upload,P0,Local data retained and retry scheduled,Manual+Automation
+NET-002,Upload,App killed after failed upload,P0,Local record retained,Manual
+NET-003,Upload,Network changes WiFi to mobile,P1,Sync resumes safely,Manual
+NET-004,Upload,Duplicate photo retry,P0,No duplicate logical attachment,Automation
+FORM-001,Visibility,q3=Yes shows q4,P0,q4 visible,Automated
+FORM-002,Visibility,q3=No hides q4,P0,q4 hidden,Automated
+FORM-003,Visibility,Empty q3 hides q4,P1,q4 hidden,Automated
+FORM-004,Visibility,Yes->No transition,P0,q4 hides and stale answer policy applied,Automated
+FORM-005,Visibility,No->Yes transition,P0,q4 appears,Automated
+FORM-006,Visibility,Unknown targetQuestion,P0,Schema rejected,Automated
+FORM-007,Schema,Duplicate questionId,P0,Schema rejected,Automated
+FORM-008,Schema,Unsupported inputType,P0,Schema rejected,Automated
+FORM-009,Schema,Cyclic visibility dependencies,P0,Schema rejected,Automated
+FORM-010,Roster,Count 0,P1,Defined empty-roster behavior,Automated
+FORM-011,Roster,Count 1,P1,One row rendered,Automated
+FORM-012,Roster,Count 100,P1,Bounded UI/memory and correct rows,Automated
+FORM-013,Roster,Count beyond max,P0,Validation prevents unsafe expansion,Automated
+HFC-001,HFC,All conditions true,P0,Rule fires,Automated
+HFC-002,HFC,One AND condition false,P0,Rule does not fire,Automated
+HFC-003,HFC,Any condition true,P0,Rule fires,Automated
+HFC-004,HFC,Boundary at threshold,P1,Correct inclusive/exclusive behavior,Automated
+HFC-005,HFC,Missing referenced value,P1,Deterministic no-crash behavior,Automated
+HFC-006,HFC,reask_once first match,P0,Prompt once,Automated
+HFC-007,HFC,reask_once repeated invalid answer,P0,Accept+flag after one reask,Automated
+HFC-008,HFC,Corrected answer after reask,P0,Continue without loop,Automated
+HFC-009,HFC,block action,P0,Cannot proceed until corrected,Automated
+HFC-010,HFC,Supervisor flag,P1,show_sup visible in review,Automated
+HFC-011,HFC,Unknown attribute,P0,Schema rejected,Automated
+HFC-012,HFC,Duplicate rule ID,P1,Schema rejected,Automated
+DB-001,Room,Offline save,P0,Row exists before sync,Manual+Instrumentation
+DB-002,Room,Kill/reopen offline,P0,Answers persist,Manual
+DB-003,Room,Sync success,P0,Row transitions to synced,Manual+Instrumentation
+DB-004,Room,500 response,P0,Row retained and retry scheduled,Manual+Instrumentation
+DB-005,Room,Retry after 500,P0,Exactly one server record,Automation
+WM-001,WorkManager,Connectivity restored,P0,Worker scheduled,Manual
+WM-002,WorkManager,Exponential backoff,P1,Retry delay increases,Instrumentation
+WM-003,WorkManager,App restart,P0,Pending work survives restart,Manual
+PERF-001,Memory,4GB device after 3 modules,P0,No ANR/OOM,Manual+Profiler
+PERF-002,Memory,Repeated open/close modules,P1,No unbounded heap growth,Profiler
+PERF-003,Storage,Low free storage,P0,Graceful error/no data loss,Manual
+PERF-004,CPU,Video module decode load,P1,UI remains responsive,Profiler
+UX-001,UX,Three dense paragraphs,P1,Readable for target user,Manual
+UX-002,UX,Standard Next button,P0,Discoverable and easy to tap,Manual
+UX-003,UX,Bright sunlight,P0,Text and controls remain legible,Manual
+UX-004,UX,Color-only status,P1,Meaning also conveyed by icon/text,Manual
+UX-005,UX,Small screen,P0,No clipping/overlap,Manual
+UX-006,Accessibility,TalkBack,P1,Logical focus order and labels,Manual
+UX-007,Accessibility,Font scaling,P1,No broken layout,Manual
+UX-008,Training,Offline video completion,P0,Progress retained offline,Manual
